@@ -1,0 +1,155 @@
+.grid {
+  display: grid;
+  height: 100vh;
+  grid-template-areas:
+    'header'
+    'main';
+  grid-template-columns: 1fr;
+  grid-template-rows: 20rem 1fr;
+  width: 100vw;
+}
+
+.header {
+  background-image: url('../../assets/images/bg-main-mobile.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  grid-area: header;
+  width: 100%;
+}
+
+.card_container {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+  width: 30rem;
+  & .card {
+    height: fit-content;
+    position: absolute;
+    width: 25rem;
+  }
+  .card_back {
+    right: 2rem;
+    top: 2.9rem;
+    width: 23rem;
+  }
+
+  .card_front {
+    width: 23rem;
+  }
+}
+
+.card_front-container {
+  height: fit-content;
+  left: -3rem;
+  position: relative;
+  top: 2rem;
+  width: fit-content;
+  & .logo {
+    align-items: center;
+    display: flex;
+    left: 1rem;
+    position: absolute;
+    top: 1.5rem;
+    width: fit-content;
+    & .circle-one {
+      background: white;
+      border-radius: 50%;
+      height: 2.3rem;
+      margin: 0 0.4rem;
+      width: 2.3rem;
+    }
+    & .circle-two {
+      border-radius: 50%;
+      border: 1px solid white;
+      height: 1rem;
+      margin: 0 0.4rem;
+      width: 1rem;
+    }
+  }
+
+  & .card_front_data-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 7rem;
+    width: 23rem;
+
+    & > p {
+      color: white;
+      font-size: 1.5rem;
+      letter-spacing: 0.1rem;
+    }
+
+    & .name_and_expiredate-container {
+      align-items: center;
+      color: white;
+      display: flex;
+      font-size: 0.8rem;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding: 0 1.5rem;
+      width: 100%;
+    }
+  }
+}
+
+.main {
+  grid-area: main;
+  padding: 8rem 2rem 0 2rem;
+
+  & .form {
+    & label {
+      color: #23002b;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      line-height: 2.3;
+    }
+
+    & input {
+      border-radius: 0.3rem;
+      border: 1px solid #dadada;
+      height: 3.2rem;
+      max-width: 35rem;
+      outline: none;
+      padding-left: 1rem;
+      width: 100%;
+
+      &::placeholder {
+        color: #ababab;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    }
+    & .small_input {
+      width: 4.5rem;
+    }
+
+    & .fit_input {
+      width: fit-content;
+    }
+
+    & .inputs_container {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+
+    & .submit {
+      background: #23002b;
+      border-radius: 1rem;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1.5rem;
+      font-weight: 300;
+      height: 4.5rem;
+      margin: 2rem 0;
+      width: 100%;
+    }
+  }
+}
