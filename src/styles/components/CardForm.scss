@@ -31,8 +31,6 @@
     width: 25rem;
   }
   .card_back {
-    right: 2rem;
-    top: 2.9rem;
     width: 23rem;
   }
 
@@ -97,11 +95,29 @@
   }
 }
 
+.card_back-container {
+  height: fit-content;
+  left: 1.2rem;
+  top: -7.1rem;
+  position: relative;
+  width: fit-content;
+
+  & .card_cvc {
+    position: absolute;
+    left: 18.5rem;
+    bottom: -6.8rem;
+    font-size: 0.8rem;
+    color: white;
+  }
+}
+
 .main {
   grid-area: main;
   padding: 8rem 2rem 0 2rem;
 
   & .form {
+    max-width: 30rem;
+    margin: 0 auto;
     & label {
       color: #23002b;
       font-size: 1rem;
@@ -111,13 +127,17 @@
     }
 
     & input {
-      border-radius: 0.3rem;
+      border-radius: 0.5rem;
       border: 1px solid #dadada;
       height: 3.2rem;
       max-width: 35rem;
       outline: none;
       padding-left: 1rem;
       width: 100%;
+
+      &:focus {
+        border: 1px solid #6a1f88;
+      }
 
       &::placeholder {
         color: #ababab;
