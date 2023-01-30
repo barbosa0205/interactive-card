@@ -1,0 +1,38 @@
+.thanks_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10rem;
+
+  & img {
+    margin: 2rem 0;
+  }
+
+  & h2 {
+    letter-spacing: 2px;
+  }
+
+  & p {
+    margin: 2rem 0;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #adadad;
+  }
+
+  & button {
+    background: #23002b;
+    border-radius: 1rem;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 300;
+    height: 4.5rem;
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 30rem;
+  }
+}

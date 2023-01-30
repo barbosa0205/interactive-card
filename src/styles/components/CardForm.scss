@@ -7,6 +7,18 @@
   grid-template-columns: 1fr;
   grid-template-rows: 20rem 1fr;
   width: 100vw;
+
+  @media (min-width: 600px) {
+    grid-template-rows: 23rem 1fr;
+  }
+  @media (min-width: 768px) {
+    grid-template-rows: 28rem 1fr;
+  }
+  @media (min-width: 1024px) {
+    grid-template-areas: 'header main';
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: min-content 2fr;
+  }
 }
 
 .header {
@@ -15,16 +27,32 @@
   background-size: cover;
   grid-area: header;
   width: 100%;
+  position: relative;
+
+  @media (min-width: 1024px) {
+    width: 40rem;
+    height: 100vh;
+  }
+  @media (min-width: 1024px) {
+    width: 40rem;
+  }
+  @media (min-width: 1200px) {
+    width: 50rem;
+  }
+  @media (min-width: 1440px) {
+    width: 70rem;
+  }
 }
 
 .card_container {
   align-items: center;
   display: flex;
-  height: 100%;
   justify-content: center;
   margin: 0 auto;
   position: relative;
   width: 30rem;
+  top: 8.5rem;
+
   & .card {
     height: fit-content;
     position: absolute;
@@ -32,10 +60,31 @@
   }
   .card_back {
     width: 23rem;
+    @media (min-width: 1024px) {
+      width: 40rem;
+    }
   }
 
   .card_front {
     width: 23rem;
+
+    @media (min-width: 1024px) {
+      width: 40rem;
+    }
+  }
+  @media (min-width: 600px) {
+    grid-template-rows: 23rem 1fr;
+    top: 12rem;
+  }
+  @media (min-width: 768px) {
+    grid-template-rows: 28rem 1fr;
+    top: 17rem;
+  }
+  @media (min-width: 1200px) {
+    left: 5rem;
+  }
+  @media (min-width: 1440px) {
+    left: 15rem;
   }
 }
 
@@ -92,6 +141,24 @@
       padding: 0 1.5rem;
       width: 100%;
     }
+
+    @media (min-width: 1024px) {
+      width: 40rem;
+      top: 13rem;
+      & > p {
+        color: white;
+        font-size: 2.5rem;
+        letter-spacing: 4px;
+        margin-bottom: 1rem;
+      }
+      & .name_and_expiredate-container {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    left: 10rem;
   }
 }
 
@@ -109,6 +176,20 @@
     font-size: 0.8rem;
     color: white;
   }
+  @media (min-width: 1024px) {
+    top: 23rem;
+    left: 15rem;
+
+    & .card_cvc {
+      left: 32rem;
+      font-size: 1.2rem;
+      top: 10rem;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    left: 17rem;
+  }
 }
 
 .main {
@@ -116,21 +197,29 @@
   padding: 8rem 2rem 0 2rem;
 
   & .form {
-    max-width: 30rem;
+    max-width: 35rem;
+    height: 100%;
     margin: 0 auto;
+
+    & .input_container {
+      margin-bottom: 1rem;
+    }
+
     & label {
       color: #23002b;
       font-size: 1rem;
       font-weight: 500;
       letter-spacing: 0.5px;
       line-height: 2.3;
+      @media (min-width: 600) {
+        font-size: 1.2rem;
+      }
     }
 
     & input {
       border-radius: 0.5rem;
       border: 1px solid #dadada;
       height: 3.2rem;
-      max-width: 35rem;
       outline: none;
       padding-left: 1rem;
       width: 100%;
@@ -144,6 +233,28 @@
         font-size: 1.2rem;
         font-weight: bold;
       }
+
+      @media (min-width: 350px) {
+        height: 3.7rem;
+      }
+
+      @media (min-width: 400px) {
+        height: 4rem;
+      }
+      @media (min-width: 600px) {
+        height: 4.3rem;
+        &::placeholder {
+          font-size: 1.3rem;
+        }
+      }
+
+      @media (min-height: 600px) {
+        margin-bottom: 2rem;
+      }
+      @media (min-width: 768px) {
+        height: 4.6rem;
+        margin-bottom: 3rem;
+      }
     }
     & .small_input {
       width: 4.5rem;
@@ -155,21 +266,57 @@
 
     & .inputs_container {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
       width: 100%;
     }
 
-    & .submit {
-      background: #23002b;
-      border-radius: 1rem;
-      border: none;
-      color: white;
-      cursor: pointer;
-      font-size: 1.5rem;
-      font-weight: 300;
-      height: 4.5rem;
-      margin: 2rem 0;
+    & .form_error {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #e63030;
+    }
+
+    & .input_error {
+      border: 1px solid #e63030;
+
+      &::placeholder {
+        color: #e63030;
+      }
+    }
+
+    & .button_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
+      & .submit {
+        background: #23002b;
+        border-radius: 1rem;
+        border: none;
+        color: white;
+        cursor: pointer;
+        font-size: 1.5rem;
+        font-weight: 300;
+        height: 4.5rem;
+        margin: 2rem 0;
+        width: 100%;
+        max-width: 35rem;
+      }
+    }
+
+    @media (min-width: 600px) {
+      max-width: 45rem;
+    }
+
+    @media (min-width: 1024px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 30rem;
+    }
+    @media (min-width: 1200px) {
+      max-width: 35rem;
     }
   }
 }

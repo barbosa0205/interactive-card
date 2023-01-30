@@ -7,8 +7,15 @@ import {
   handleChangeErrors,
   handleSubmitErrors,
 } from '../utils/errors/cardFormErrors'
+import ThankYouSubmit from './ThankYouSubmit'
 const CardForm = () => {
-  const [cardFormValues, handleCardFormChange] = useForm(
+  const {
+    formData: cardFormValues,
+    handleChange: handleCardFormChange,
+    handleSubmit,
+    submitErrors,
+    submited,
+  } = useForm(
     {
       fullname: '',
       card: '',
@@ -87,75 +94,131 @@ const CardForm = () => {
 
       {/* Main */}
       <main className='main'>
-        <form onSubmit={(e) => e.preventDefault()} className='form'>
-          <label htmlFor='fullname'>
-            <p>CARDHOLDER NAME</p>
-          </label>
-          <input
-            onChange={handleCardFormChange}
-            value={cardFormValues.fullname}
-            type='text'
-            name='fullname'
-            id='fullname'
-            placeholder='e.g. Jane Appleseed'
-          />
-          <label htmlFor='card'>
-            <p>CARD NUMBER</p>
-          </label>
-          <input
-            onChange={handleCardFormChange}
-            value={cardFormValues.card}
-            type='text'
-            name='card'
-            id='card'
-            placeholder='e.g. 1234 5678 9123 0000'
-          />
-          <section className='inputs_container'>
+        {!submited ? (
+          <form onSubmit={(e) => e.preventDefault()} className='form'>
             <div className='input_container'>
-              <label htmlFor='exp_month'>
-                <p>EXP. DATE</p>
+              <label htmlFor='fullname'>
+                <p>CARDHOLDER NAME</p>
               </label>
               <input
+                className={`${submitErrors?.fullname ? 'input_error' : ''}`}
                 onChange={handleCardFormChange}
-                value={cardFormValues.exp_month}
-                className='small_input'
+                value={cardFormValues.fullname}
                 type='text'
-                name='exp_month'
-                id='exp_month'
-                placeholder='MM'
+                name='fullname'
+                id='fullname'
+                placeholder='e.g. Jane Appleseed'
               />
+
+              {/* name errors */}
+              {submitErrors?.fullname ? (
+                <p className='form_error'>{submitErrors.fullname}</p>
+              ) : (
+                ''
+              )}
             </div>
             <div className='input_container'>
-              <label htmlFor='exp_year'>
-                <p>(MM/YY)</p>
+              <label htmlFor='card'>
+                <p>CARD NUMBER</p>
               </label>
               <input
+                className={`${submitErrors?.card ? 'input_error' : ''}`}
                 onChange={handleCardFormChange}
-                value={cardFormValues.exp_year}
-                className='small_input'
+                value={cardFormValues.card}
                 type='text'
-                name='exp_year'
-                id='exp_year'
-                placeholder='YY'
+                name='card'
+                id='card'
+                placeholder='e.g. 1234 5678 9123 0000'
               />
+              {/* card errors */}
+              {submitErrors?.card ? (
+                <p className='form_error'>{submitErrors.card}</p>
+              ) : (
+                ''
+              )}
             </div>
-            <div className='input_container'>
-              <label htmlFor='cvc'>
-                <p>CVC</p>
-              </label>
-              <input
-                onChange={handleCardFormChange}
-                value={cardFormValues.cvc}
-                className='fit_input'
-                type='text'
-                name='cvc'
-                id='cvc'
-                placeholder='e.g. 123'
-              />
+            <section className='inputs_container'>
+              <div
+                style={{
+                  display: 'flex',
+                }}
+              >
+                <div>
+                  <label htmlFor='exp_month'>
+                    <p>EXP. DATE</p>
+                  </label>
+                  <input
+                    onChange={handleCardFormChange}
+                    value={cardFormValues.exp_month}
+                    className={`small_input ${
+                      submitErrors?.exp_month ? 'input_error' : ''
+                    }`}
+                    type='text'
+                    name='exp_month'
+                    id='exp_month'
+                    placeholder='MM'
+                  />
+                </div>
+                <div>
+                  <label htmlFor='exp_year'>
+                    <p>(MM/YY)</p>
+                  </label>
+                  <input
+                    onChange={handleCardFormChange}
+                    value={cardFormValues.exp_year}
+                    className={`small_input ${
+                      submitErrors?.exp_month ? 'input_error' : ''
+                    }`}
+                    type='text'
+                    name='exp_year'
+                    id='exp_year'
+                    placeholder='YY'
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor='cvc'>
+                  <p>CVC</p>
+                </label>
+                <input
+                  onChange={handleCardFormChange}
+                  value={cardFormValues.cvc}
+                  className={`fit_input ${
+                    submitErrors?.exp_month ? 'input_error' : ''
+                  }`}
+                  type='text'
+                  name='cvc'
+                  id='cvc'
+                  placeholder='e.g. 123'
+                />
+              </div>
+              <div
+                style={{
+                  width: '90%',
+                }}
+              >
+                {submitErrors?.exp_month ? (
+                  <p className='form_error'>{submitErrors.exp_month}</p>
+                ) : (
+                  ''
+                )}
+                {submitErrors?.cvc ? (
+                  <p className='form_error'>{submitErrors.cvc}</p>
+                ) : (
+                  ''
+                )}
+              </div>
+            </section>
+            <div className='button_container'>
+              <button onClick={handleSubmit} className='submit'>
+                Confirm
+              </button>
             </div>
-          </section>
-          <button className='submit'>Confirm</button>
-        </form>
+          </form>
+        ) : (
+          <ThankYouSubmit />
+        )}
       </main>
     </div>
   )
